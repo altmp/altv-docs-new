@@ -1,0 +1,197 @@
+---
+sidebar_position: 3
+toc_max_heading_level: 2
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Known issues
+
+:::tip Most common issues
+
+- ["altv-client.dll can't be loaded"](#altv-clientdll-cant-be-loaded)
+- ["Integrity check of resource failed"](#integrity-check-of-resource-failed)
+- [Stuck below the world / interface not loading / alt:V watermark not visible](#webview-not-working)
+- [Mouse is stuck at at the center of the screen or clicks are not recognized](#interface-not-responsive)
+
+:::
+
+## alt:V
+
+### "altv-client.dll can't be loaded"
+
+<Tabs>
+<TabItem value="antivirus" label="Antivirus">
+
+If you have Kaspersky AntiVirus or Kaspersky Internet Security installed, you may encounter the "altv-client.dll can't be loaded" error, even if all necessary exceptions have been added.
+The only known solution for this problem is to disable the virus scanner.
+Additionally, keeping the alt:V window in focus can help minimize the likelihood of encountering this error.
+It's worth noting that similar issues may arise with other antivirus software, such as Avast.
+
+</TabItem>
+<TabItem value="other" label="Other">
+
+Insufficient user permissions on the alt:V directory can be another potential issue.
+Please ensure that your user account has the necessary permissions to access and modify the alt:V directory:
+
+1. Right-click on your alt:V directory
+2. Select "Properties"
+3. Select the "Security" tab
+4. Click on "Edit"
+5. Select your user account in the "Group or user names" list
+6. Ensure that the "Allow" checkbox is checked for "Full control"
+7. Click on "Apply" and "OK"
+
+</TabItem>
+</Tabs>
+
+### "Integrity check of resource failed"
+
+The occurrence of this error indicates a failure in the integrity check of a resource.
+This can be caused by various factors, such as a faulty download, insufficient free disk space, or other related reasons.
+
+1. Ensure you have enough free space on the drive where alt:V is installed
+2. Start alt:V
+3. Go to the settings
+4. Use the "Delete resources" button next to the respective "Server data" entry to remove the resources
+5. Connect again to the server
+
+### Failed to fetch updates
+
+This error typically occurs when there is a disruption in your connection during the alt:V client update, or when the download is blocked by antivirus software.
+To resolve this issue, you can try disabling your antivirus or firewall temporarily.
+If the problem persists, it is advisable to attempt the update at a later time.
+
+Another potential solution is to use a VPN (see basic steps).
+By using a VPN, you can potentially bypass any network restrictions or interruptions that might be causing the error.
+
+### Your game version is X, but only Y supported at the moment
+
+To resolve this issue, ensure that your GTA V is updated to the latest version.
+You can try verifying the game cache or explore alternative methods to force the game update, like for example Steam or Epic Games Launchers file validation feature.
+
+### RageMP is starting
+
+This problem occurs if RageMP has been installed into the GTA V directory.
+To fix it folow those steps:
+
+1. Go to your GTA V directory
+2. Delete all RageMP files and folders from it
+
+Afterwards you can reinstall RageMP into a seperate folder.
+
+### Steam is launched
+
+These steps are only applicable if you are using the Rockstar Games or Epic Games Launcher version of GTA V.
+
+1. Go to your GTA V directory
+2. Delete the "steam_api64.dll"
+
+### Epic Games Launcher is starting
+
+These steps are only applicable if you are using the Rockstar Games or Steam version of GTA V.
+
+1. Go to your GTA V directory
+2. Delete the "EOSSDK-Win64-Shipping.dll"
+
+### Timeout while starting the game
+
+1. Go to your alt:V directory
+2. Open the "altv.toml" with your prefered editor (for example notepad)
+3. Add "gameTimeout = 120" at the bottom of the file, where 120 is the time in seconds the launcher should wait
+
+### Game crashes / closes during the start
+
+This could mean program or service is blocking alt:V and causing it to crash.
+You should try to disable all non Microsoft related services.
+
+1. Press <kbd>Win</kbd> + <kbd>R</kbd> on your Keyboard
+2. Enter "msconfig" in the window which appeared
+3. Click on OK
+4. Select the Tab called "Services"
+5. Check the box called "Hide all Microsoft services", located at the bottom of the window.
+6. Click the button "Disable all"
+7. Scroll and find "Rockstar Games Library Service" and check it.
+8. Click the button "Apply"
+9. Restart your PC
+
+If alt:V is working, you can reenable some services, until you find the one that is causing the crashes.
+If you find the service that is causing the problem, please contact us on discord.
+
+## Game issues
+
+### FPS problems
+
+1. Launch GTA V into singleplayer
+2. Open the "Graphics" settings
+3. Set "MSAA" to "Off"
+
+### Signed out from Social Club
+
+A potential reason for this problem is that you have "monitor folder access" from Windows enabled.
+
+1. Open "Windows Security"
+2. Select "Virus & Threat Protection Settings"
+3. Select "Controlled Folder Access"
+4. Turn it off or whitelist the alt:V directory
+
+## Controls
+
+### Interface not responsive / Mouse stuck centered in screen
+
+1. Launch GTA V into singleplayer
+2. Open the "Keyboard / Mouse" settings
+3. Change "Mouse Input Method" to "Raw Input"
+
+### Webview lagging
+
+:::caution
+
+This can reduce the webviews performance, but may reduce input lags
+
+:::
+
+1. Press <kbd>Win</kbd> + <kbd>R</kbd> on your keyboard
+2. Enter "ms-settings:display-advancedgraphics" in the "Run" window
+3. Click on OK
+4. Switch "Hardware-accelerated GPU scheduling" to "Off"
+
+### Webview not working
+
+This solution is applicable if the alt:V interface is not visible after launch and you're stuck under the world ([picture](https://i.gyazo.com/thumb/1200/493c99558d9424a48282560b8e0160da-png.jpg)).
+Depending on your used hardware there are several solutions:
+
+<Tabs>
+<TabItem value="laptop" label="Laptop">
+
+1. Press <kbd>Win</kbd> + <kbd>R</kbd> on your keyboard
+2. Enter "ms-settings:display-advancedgraphics" in the "Run" window
+3. Click on OK
+4. Click "Search" and select "altv.exe", "altv-webengine.exe" and "gta5.exe" one after another
+5. Select "Options" and select "High Performance" for all programs
+
+</TabItem>
+<TabItem value="nvidia" label="NVIDIA">
+
+1. Open "NVIDIA Control Panel"
+2. Select "3D Settings"
+3. Click on "Manage 3D Settings"
+4. Click on "Program Settings"
+5. Add "altv.exe", "altv-webengine.exe" and "gta5.exe"
+6. Select the same graphics card for the feature "OpenGL rendering GPU" for all programs
+
+Look [here](https://www.itechtics.com/use-specific-gpu/#force-an-application-to-use-a-dedicated-gpu-i-e-nvidia-radeon-etc-using-the-context-menu) for a more detailed description.
+
+</TabItem>
+<TabItem value="amd" label="AMD">
+
+1. Right-click on your desktop and select "AMD Radeon Settings"
+2. Select "System"
+3. Select "Switchable Graphics"
+4. Add "altv.exe", "altv-webengine.exe" and "gta5.exe" and select "High Performance"
+    
+Look [here](https://www.amd.com/en/support/kb/faq/dh-017) for a more detailed description.
+
+</TabItem>
+</Tabs>

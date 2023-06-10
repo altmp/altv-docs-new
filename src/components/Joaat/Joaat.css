@@ -1,0 +1,70 @@
+.joaat {
+    display: flex;
+    gap: 4rem;
+    margin-top: 2rem;
+}
+
+.calculator {
+    padding: 1rem;
+    border: 1px solid var(--ifm-toc-border-color);
+    border-radius: 1rem;
+}
+
+.calculator input {
+    padding: .75rem;
+    font-family: inherit;
+    background: none;
+    border-radius: .5rem;
+    border: 1px solid var(--ifm-toc-border-color);
+    font-size: 1rem;
+}
+
+.calculator .results {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.calculator .results .item {
+    display: flex;
+    flex-direction: column;
+}
+
+.calculator .results .item span {
+    font-size: .8rem;
+    font-weight: 500;
+    opacity: .5;
+}
+
+@keyframes karbyRide {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(10rem);
+    }
+    51% {
+        transform: translateX(10rem) rotateY(180deg);
+    }
+    99% {
+        transform: translateX(0) rotateY(180deg);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.karby img {
+    margin: 1rem 0;
+    height: 48px;
+    width: auto;
+    animation: karbyRide 2s linear infinite;
+    backface-visibility: visible;
+}
+
+@media (max-width: 640px) {
+    .joaat {
+        flex-direction: column;
+    }
+}

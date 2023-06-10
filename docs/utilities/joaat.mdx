@@ -1,0 +1,16 @@
+---
+sidebar_label: "Joaat"
+---
+
+import Joaat from '@site/src/components/Joaat/Joaat';
+
+Jooat, short for "Jenkis one at a time", is a hashing algorithm utilized by GTA V to convert names into unique uint32 values.
+A hash function takes an input, in this case, a name, and produces a fixed-size string of characters, which is the hash value.
+
+A hash value is not case sensitive, meaning that the same name in different letter cases will result in the same hash value.
+However, it is important to note that it is not possible to reverse the original name from its hashed value without using a brute-force method, which involves systematically trying all possible values until a match is found.
+
+The Jooat hashing algorithm is a feature incorporated into the alt:V API for GTA V.
+This feature allows developers to utilize the `alt.hash()` function directly on both the server and client sides.
+By using this function, developers can effortlessly convert names into their corresponding hash values.
+<Joaat></Joaat>

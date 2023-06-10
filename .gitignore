@@ -1,0 +1,19 @@
+# IDE
+.vs/
+.idea/
+
+# OS
+## MacOS
+.DS_Store
+.Spotlight-V100
+.Trashes
+._*
+## Windows
+Thumbs.db
+desktop.ini
+
+# Node
+node_modules/
+
+# Docs Engine
+.docusaurus/

@@ -1,0 +1,3 @@
+[submodule "typings/js-module"]
+	path = typings/js-module
+	url = https://github.com/altmp/altv-types.git

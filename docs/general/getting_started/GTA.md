@@ -6,8 +6,6 @@ sidebar_position: 1
 
 ## Entities
 
-### Introduction
-
 ### Peds
 
 The term "ped" is short for "pedestrian," which refers to characters within the game world.

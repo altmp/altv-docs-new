@@ -48,7 +48,8 @@ You can set `announce` to false in your "server.toml" file.
 
 Inside your "server.toml" configuration file, there is a setting called `announce`.
 If this setting is set to `true`, you will need a **valid** token for broadcasting to the master list.
-If you don't have a token yet, you can find detailed instructions on how to obtain one by visiting the [FAQ](/#how-can-i-get-a-token-for-masterlist).
+If you don't have a token yet, you can find detailed instructions on how to obtain one by visiting
+the [FAQ](/#how-can-i-get-a-token-for-masterlist).
 
 ## JavaScript module
 

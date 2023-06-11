@@ -10,7 +10,7 @@ The resource.toml file is an essential configuration file required for each reso
 It should be placed in the main directory of your resource.
 
 This file contains various configuration options specific to your resource, including
-its [type](~/general/getting_started/resources#resource-types) and any dependencies it may have.
+its [type](/general/getting_started/resources#resource-types) and any dependencies it may have.
 
 ## Configuration options
 

@@ -27,6 +27,6 @@ UDP is used.
 
 :::tip Changing the port
 
-If you want to change the port, you can do so by modifying the `port` value in the [server.toml](~/general/getting_started/configuration_files/server_configuration) configuration file.
+If you want to change the port, you can do so by modifying the `port` value in the [server.toml](/general/getting_started/configuration_files/server_configuration) configuration file.
 
 :::

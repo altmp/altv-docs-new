@@ -91,7 +91,11 @@ const config = {
                         items: [
                             {
                                 label: 'JavaScript',
-                                to: '/api',
+                                to: '/api/js',
+                            },
+                            {
+                                label: 'JavaScript v2',
+                                to: '/api/jsv2',
                             },
                             {
                                 label: 'Natives',
@@ -199,10 +203,42 @@ const config = {
 
     plugins: [
         [
-            'docusaurus-plugin-typedoc-api',
+            'altv-docs-js-api',
             {
+                id: 'js',
                 minimal: true,
                 projectRoot: path.join(__dirname, 'typings'),
+                routeBasePath: 'api/js',
+                packages: [
+                    {
+                        slug: 'shared',
+                        path: 'js-module/shared',
+                        entry: 'index.d.ts',
+                        name: 'Shared module (alt-shared)'
+                    },
+                    {
+                        slug: 'client',
+                        path: 'js-module/client',
+                        entry: 'index.d.ts',
+                        name: 'Client module (alt-client)'
+                    },
+                    {
+                        slug: 'server',
+                        path: 'js-module/server',
+                        entry: 'index.d.ts',
+                        name: 'Server module (alt-server)'
+                    }
+                ],
+            },
+        ],
+        [
+            'altv-docs-js-api',
+            {
+                id: 'jsv2',
+                minimal: true,
+                projectRoot: path.join(__dirname, 'typings'),
+                routeBasePath: 'api/jsv2',
+                rootEntryName: 'JS Module v2',
                 packages: [
                     {
                         slug: 'shared',

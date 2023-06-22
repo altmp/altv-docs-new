@@ -18,6 +18,7 @@ export function VersionBanner(): JSX.Element | null {
 	}
 
 	const latestVersionInfo = docs[latestVersion.label];
+	if (!latestVersionInfo) return null;
 
 	return (
 		<div

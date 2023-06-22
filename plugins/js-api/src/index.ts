@@ -162,9 +162,9 @@ export default function typedocApiPlugin(
 						);
 
 						// eslint-disable-next-line no-param-reassign
-						cfg.packageName = packageJson.name;
+						cfg.packageName ??= packageJson.name;
 						// eslint-disable-next-line no-param-reassign
-						cfg.packageVersion = packageJson.version;
+						cfg.packageVersion ??= packageJson.version;
 					});
 
 					await fs.promises.writeFile(
@@ -202,13 +202,26 @@ export default function typedocApiPlugin(
 						} else {
 							const outDir = path.join(versionsDocsDir, `version-${metadata.versionName}`);
 
-							packages = flattenAndGroupPackages(
-								await importFile(path.join(outDir, 'api-packages.json')),
-								await importFile(path.join(outDir, 'api-typedoc.json')),
-								metadata.versionPath,
-								options,
-								true,
-							);
+							if (fs.existsSync(path.join(outDir, 'api-packages.json'))) {
+								packages = flattenAndGroupPackages(
+									await importFile(path.join(outDir, 'api-packages.json')),
+									await importFile(path.join(outDir, 'api-typedoc.json')),
+									metadata.versionPath,
+									options,
+									true,
+								);
+							} else {
+								const outFile = path.join(outDir, `api-typedoc.json`);
+
+								await generateJson(path.join(outDir, 'repo'), entryPoints, outFile, options);
+
+								packages = flattenAndGroupPackages(
+									packageConfigs,
+									await importFile(outFile),
+									metadata.versionPath,
+									options,
+								);
+							}
 						}
 
 						packages.sort((a, d) => options.sortPackages(a, d));

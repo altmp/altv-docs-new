@@ -6,6 +6,27 @@ const darkCodeTheme = require('./src/theme/highlightDark.js');
 
 const path = require('path');
 
+const versions = {
+    release: {
+        label: 'Release',
+        docpath: '/release',
+        banner: 'none',
+        badge: false,
+    },
+    rc: {
+        label: 'Release Candidate',
+        docpath: '/rc',
+        banner: 'none',
+        badge: true,
+    },
+    dev: {
+        label: 'Development',
+        docpath: '/dev',
+        banner: 'none',
+        badge: true
+    }
+};
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
     title: 'alt:V Documentation',
@@ -38,12 +59,25 @@ const config = {
             'classic',
             /** @type {import('@docusaurus/preset-classic').Options} */
             ({
+                // pages: {
+                //     path: 'src/pages'
+                // },
                 docs: {
+                    lastVersion: 'release',
+                    includeCurrentVersion: false,
+                    versions: Object.fromEntries(Object.entries(versions).map(([k, v]) => {
+                        const obj = {...v, path: v.docpath};
+                        delete obj['docpath'];
+                        return [k, obj];
+                    })),
                     routeBasePath: '/',
+                    // exclude: ['**/_*/**'],
                     sidebarPath: require.resolve('./sidebars.js'),
                     // Please change this to your repo.
                     // Remove this to remove the "edit this page" links.
-                    editUrl: 'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+                    editUrl: ({ version, docPath }) => {
+                        return `https://github.com/altmp/altv-docs-articles/blob/${version}/${docPath}`;
+                    },
                 },
                 blog: {
                     showReadingTime: true,
@@ -109,12 +143,14 @@ const config = {
                         position: 'left',
                         items: [
                             {
+                                type: 'doc',
                                 label: 'CDN Links',
-                                to: '/utilities/cdn_links',
+                                docId: 'utilities/cdn_links',
                             },
                             {
+                                type: 'doc',
                                 label: 'JOAAT',
-                                to: '/utilities/joaat',
+                                docId: 'utilities/joaat'
                             }
                         ],
                     },
@@ -132,6 +168,11 @@ const config = {
                                 href: 'https://github.com/MyHwu9508/alt-V-Anticheat-Guide/blob/main/README.md'
                             }
                         ],
+                    },
+                    {
+                        type: 'docsVersionDropdown',
+                        position: 'right',
+                        dropdownItemsAfter: [{type: 'doc', docId: 'general/getting_started/branches', label: 'What is it?', disableActive: true }]
                     },
                     {
                         href: 'https://github.com/altmp',
@@ -209,6 +250,8 @@ const config = {
                 minimal: true,
                 projectRoot: path.join(__dirname, 'typings/js-module'),
                 routeBasePath: 'api/js',
+                versions,
+                onlyIncludeVersions: ['rc', 'dev', 'release'],
                 packages: [
                     {
                         slug: 'shared',
@@ -239,6 +282,8 @@ const config = {
                 projectRoot: path.join(__dirname, 'typings/js-module'),
                 routeBasePath: 'api/jsv2',
                 rootEntryName: 'JS Module v2',
+                versions,
+                onlyIncludeVersions: ['rc', 'dev', 'release'],
                 packages: [
                     {
                         slug: 'shared',

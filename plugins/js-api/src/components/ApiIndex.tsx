@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import Link from '@docusaurus/Link';
-import type { PropVersionMetadata } from '@docusaurus/plugin-content-docs';
 import type { GlobalVersion } from '@docusaurus/plugin-content-docs/client';
 import { useDocsPreferredVersion } from '@docusaurus/theme-common';
 import { useDocsVersion } from '@docusaurus/theme-common/internal';
@@ -10,6 +9,7 @@ import type { ApiOptions, PackageReflectionGroup } from '../types';
 import { removeScopes } from '../utils/links';
 import { Footer } from './Footer';
 import { VersionBanner } from './VersionBanner';
+import {useVersions} from "@docusaurus/plugin-content-docs/lib/client";
 
 export interface ApiIndexProps extends Pick<DocItemProps, 'route'> {
 	history: {
@@ -22,45 +22,25 @@ export interface ApiIndexProps extends Pick<DocItemProps, 'route'> {
 
 function addVersionToUrl(
 	url: string,
-	latestVersion: PropVersionMetadata,
-	preferredVersion: GlobalVersion | null | undefined,
+	newVersion: string,
+	versions: GlobalVersion[]
 ) {
-	if (
-		!url.match(/api\/([\d.]+)/) &&
-		!url.includes('api/next') &&
-		preferredVersion &&
-		preferredVersion.name !== latestVersion.version
-	) {
-		const version = preferredVersion.name === 'current' ? 'next' : preferredVersion.name;
-
-		if (url.endsWith('/api')) {
-			return `${url}/${version}`;
-		}
-
-		return url.replace('/api/', `/api/${version}/`);
-	}
-
-	return url;
+	const currentBlock = url.match(/^\/api\/([^\/]+)\/([^\/]+)/);
+	if (currentBlock) return url;
+	const versionPart = versions.find(e => e.name === newVersion)?.isLast ? '' : '/' + newVersion
+	return url.replace(/^\/api\/([^\/]+)/, '/api/$1' + versionPart);
 }
 
 export default function ApiIndex({ options, packages, history }: ApiIndexProps) {
 	const latestVersion = useDocsVersion();
+	const versions = useVersions('default');
 	const { preferredVersion } = useDocsPreferredVersion('default');
 
 	useEffect(() => {
-		// Redirect to package when only 1
-		if (packages.length === 1) {
-			history.replace(
-				addVersionToUrl(
-					packages[0].entryPoints[0].reflection.permalink,
-					latestVersion,
-					preferredVersion,
-				),
-			);
-
-			// Redirect to preferred version
-		} else if (preferredVersion) {
-			history.replace(addVersionToUrl(history.location.pathname, latestVersion, preferredVersion));
+		if (preferredVersion) {
+			const url = history.location.pathname;
+			const newUrl = addVersionToUrl(url, preferredVersion.name, versions);
+			if (newUrl != url) history.replace(newUrl);
 		}
 	}, [packages, history, latestVersion, preferredVersion]);
 

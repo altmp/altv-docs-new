@@ -46,9 +46,9 @@ function createVersionMetadata({
 	const isLast = versionName === lastVersionName;
 	const versionOptions = options.versions[versionName] ?? {};
 	const versionLabel =
-		versionOptions.label ?? versionName === CURRENT_VERSION_NAME ? 'Next' : versionName;
+		versionOptions.label ?? (versionName === CURRENT_VERSION_NAME ? 'Next' : versionName);
 	let versionPathPart =
-		versionOptions.path ?? versionName === CURRENT_VERSION_NAME ? 'next' : versionName;
+		versionOptions.path ?? (versionName === CURRENT_VERSION_NAME ? 'next' : versionName);
 
 	if (isLast) {
 		versionPathPart = '';
@@ -92,7 +92,7 @@ export async function readVersionsMetadata(
 	const versionNamesUnfiltered = await readVersionNames(context.siteDir, {
 		...specialOptions,
 		disableVersioning: options.disableVersioning ?? false,
-		id: options.id ?? 'default',
+		id: 'default',
 		includeCurrentVersion: options.includeCurrentVersion ?? true,
 	});
 	const versionNames = filterVersions(versionNamesUnfiltered, {

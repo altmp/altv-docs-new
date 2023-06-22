@@ -1,0 +1,1 @@
+# This directory is not used. See https://github.com/altmp/altv-docs-articles for articles.

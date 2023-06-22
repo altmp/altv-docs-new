@@ -1,3 +1,36 @@
-[submodule "typings/js-module"]
-	path = typings/js-module
-	url = https://github.com/altmp/altv-types.git
+[submodule "versioned_docs/version-dev"]
+	path = versioned_docs/version-dev
+	url = git@github.com:altmp/altv-docs-articles
+	branch = dev
+[submodule "versioned_docs/version-rc"]
+	path = versioned_docs/version-rc
+	url = git@github.com:altmp/altv-docs-articles
+	branch = rc
+[submodule "versioned_docs/version-release"]
+	path = versioned_docs/version-release
+	url = git@github.com:altmp/altv-docs-articles
+	branch = release
+[submodule "js_versioned_docs/version-dev/repo"]
+	path = js_versioned_docs/version-dev/repo
+	url = git@github.com:altmp/altv-types
+	branch = master
+[submodule "js_versioned_docs/version-rc/repo"]
+	path = js_versioned_docs/version-rc/repo
+	url = git@github.com:altmp/altv-types
+	branch = master
+[submodule "js_versioned_docs/version-release/repo"]
+	path = js_versioned_docs/version-release/repo
+	url = git@github.com:altmp/altv-types
+	branch = master
+[submodule "jsv2_versioned_docs/version-dev/repo"]
+	path = jsv2_versioned_docs/version-dev/repo
+	url = git@github.com:altmp/altv-types
+	branch = master
+[submodule "jsv2_versioned_docs/version-rc/repo"]
+	path = jsv2_versioned_docs/version-rc/repo
+	url = git@github.com:altmp/altv-types
+	branch = master
+[submodule "jsv2_versioned_docs/version-release/repo"]
+	path = jsv2_versioned_docs/version-release/repo
+	url = git@github.com:altmp/altv-types
+	branch = master

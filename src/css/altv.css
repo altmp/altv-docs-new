@@ -493,3 +493,8 @@ table {
     justify-content: space-between;
   }
 }
+
+.theme-doc-version-badge {
+  position: relative;
+  top: -20px;
+}

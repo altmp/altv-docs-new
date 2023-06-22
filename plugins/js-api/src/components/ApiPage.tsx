@@ -7,6 +7,7 @@ import type { JSONOutput } from 'typedoc';
 import DocPage, { type Props as DocPageProps } from '@theme/DocPage';
 import type { ApiOptions, DeclarationReflectionMap, PackageReflectionGroup } from '../types';
 import { ApiDataContext } from './ApiDataContext';
+import {useLocation} from "@docusaurus/router";
 
 function isObject(value: unknown): value is JSONOutput.Reflection {
 	return typeof value === 'object' && value !== null && !Array.isArray(value);
@@ -61,6 +62,9 @@ export interface ApiPageProps extends DocPageProps {
 }
 
 function ApiPage({ options, packages, ...props }: ApiPageProps) {
+	const location = useLocation();
+	console.log(location.pathname);
+
 	const value = useMemo(
 		() => ({ options, reflections: mapPackagesToReflection(packages) }),
 		[options, packages],

@@ -18,3 +18,5 @@ node_modules/
 # Docs Engine
 .docusaurus/
 /build/
+
+*_versioned_docs/**/api-typedoc.json

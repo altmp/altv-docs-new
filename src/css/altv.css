@@ -351,6 +351,7 @@ table {
   border: none;
   padding: 0;
   margin-bottom: 3rem;
+  text-decoration: none;
 }
 
 .pagination-nav__sublabel {
@@ -419,7 +420,7 @@ table {
   text-decoration: none;
 }
 
-.navbar__link, .dropdown__link {
+.navbar__link, .dropdown__link, .theme-edit-this-page {
   text-decoration: none;
 }
 

@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import * as TypeDoc from 'typedoc';
-import { JSONOutput, ReflectionKind } from 'typedoc';
+import { JSONOutput, ReflectionKind, Converter, Context } from 'typedoc';
 import ts from 'typescript';
 import { normalizeUrl } from '@docusaurus/utils';
 import type {
@@ -57,6 +57,10 @@ export async function generateJson(
 
 	app.options.addReader(new TypeDoc.TSConfigReader());
 	app.options.addReader(new TypeDoc.TypeDocReader());
+
+	app.converter.on(Converter.EVENT_BEGIN, (context: Context) => {
+		context.project.getReflectionFromSymbol = () => undefined;
+	});
 
 	app.bootstrap({
 		skipErrorChecking: true,

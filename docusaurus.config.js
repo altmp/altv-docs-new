@@ -207,24 +207,24 @@ const config = {
             {
                 id: 'js',
                 minimal: true,
-                projectRoot: path.join(__dirname, 'typings'),
+                projectRoot: path.join(__dirname, 'typings/js-module'),
                 routeBasePath: 'api/js',
                 packages: [
                     {
                         slug: 'shared',
-                        path: 'js-module/shared',
+                        path: 'shared',
                         entry: 'index.d.ts',
                         name: 'Shared module (alt-shared)'
                     },
                     {
                         slug: 'client',
-                        path: 'js-module/client',
+                        path: 'client',
                         entry: 'index.d.ts',
                         name: 'Client module (alt-client)'
                     },
                     {
                         slug: 'server',
-                        path: 'js-module/server',
+                        path: 'server',
                         entry: 'index.d.ts',
                         name: 'Server module (alt-server)'
                     }
@@ -236,23 +236,23 @@ const config = {
             {
                 id: 'jsv2',
                 minimal: true,
-                projectRoot: path.join(__dirname, 'typings'),
+                projectRoot: path.join(__dirname, 'typings/js-module'),
                 routeBasePath: 'api/jsv2',
                 rootEntryName: 'JS Module v2',
                 packages: [
                     {
                         slug: 'shared',
-                        path: 'js-module/shared',
+                        path: 'shared',
                         entry: 'index.d.ts'
                     },
                     {
                         slug: 'client',
-                        path: 'js-module/client',
+                        path: 'client',
                         entry: 'index.d.ts'
                     },
                     {
                         slug: 'server',
-                        path: 'js-module/server',
+                        path: 'server',
                         entry: 'index.d.ts'
                     }
                 ],

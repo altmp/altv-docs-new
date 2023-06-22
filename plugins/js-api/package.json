@@ -44,6 +44,7 @@
     "@docusaurus/plugin-content-docs": "^2.4.0",
     "@docusaurus/types": "^2.4.0",
     "@docusaurus/utils": "^2.4.0",
+    "@docusaurus/theme-classic": "^2.4.1",
     "@vscode/codicons": "^0.0.32",
     "marked": "^4.3.0",
     "typedoc": "^0.23.28"

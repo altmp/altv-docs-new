@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "prepare": "husky install && node prepare.mjs",
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
     "build": "npm run pack-plugins && docusaurus build",
@@ -28,6 +29,7 @@
   "devDependencies": {
     "@docusaurus/module-type-aliases": "^2.4.1",
     "chokidar": "^3.5.3",
+    "husky": "^8.0.3",
     "packemon": "^3.1.1"
   },
   "browserslist": {

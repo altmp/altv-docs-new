@@ -3,7 +3,7 @@ name: Build and deploy docs on GitHub Pages
 on:
   push:
     branches:
-      - *
+      - '*'
 
 permissions:
   contents: read

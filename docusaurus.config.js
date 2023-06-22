@@ -95,6 +95,12 @@ const config = {
     themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
         ({
+            metadata: [
+                {
+                    name: 'darkreader-lock',
+                    value: ''
+                }
+            ],
             colorMode: {
                 defaultMode: 'dark',
                 respectPrefersColorScheme: true,

@@ -55,6 +55,7 @@ async function main() {
         if (await isDirEmpty(path))
             await sh("git submodule update " + path);
         await sh("git checkout " + branch, path);
+        await sh("git pull origin " + branch, path);
         console.log();
     }
 }

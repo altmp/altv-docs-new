@@ -292,7 +292,6 @@ export default function typedocApiPlugin(
 						info: JSONOutput.Reflection,
 						modules?: Record<string, string>,
 					): RouteConfig {
-						console.log(info.permalink);
 						return {
 							path: info.permalink,
 							exact: true,

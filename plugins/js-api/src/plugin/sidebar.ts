@@ -8,6 +8,15 @@ import type {
 } from '../types';
 import { createReflectionMap } from './data';
 
+function isDeprecated(comment?: JSONOutput.Comment): boolean {
+	if (!comment) {
+		return false;
+	}
+
+	return Boolean(comment.blockTags?.some(e => e.tag == '@deprecated'))
+}
+
+
 export function groupSidebarItems(
 	map: DeclarationReflectionMap,
 	groups: JSONOutput.ReflectionGroup[],
@@ -53,6 +62,7 @@ export function groupSidebarItems(
 				return {
 					href: child.permalink,
 					label: child.name,
+					className: isDeprecated(child?.comment) ? 'tsd-deprecated' : undefined,
 					type: 'link',
 				};
 			}),

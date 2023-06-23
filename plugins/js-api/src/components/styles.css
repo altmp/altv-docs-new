@@ -208,6 +208,18 @@ html[data-theme='light'] .tsd-panel-content {
 	vertical-align: middle;
 }
 
+.tsd-flag-alpha {
+	background-color: var(--ifm-color-danger);
+	color: var(--ifm-badge-color) !important;
+	font-weight: bold;
+}
+
+.tsd-flag-beta, .tsd-flag-experimental {
+	background-color: var(--ifm-color-warning);
+	color: black !important;
+	font-weight: bold;
+}
+
 /* MODIFIERS */
 
 .badge-group {

@@ -81,7 +81,7 @@ export default function ApiItem({ readme: Readme, route }: ApiItemProps) {
 			heading={
 				<>
 					<span className="tsd-header-flags">
-						<Flags flags={item.flags} />
+						<Flags flags={item.flags} tags={item.comment?.modifierTags} />
 					</span>
 					{item.name} <TypeParametersGeneric params={item.typeParameters} />
 				</>

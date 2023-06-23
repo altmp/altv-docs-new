@@ -6,7 +6,6 @@ import { useReflection } from '../hooks/useReflection';
 import { useReflectionMap } from '../hooks/useReflectionMap';
 import { hasOwnDocument } from '../utils/visibility';
 import { AnchorLink } from './AnchorLink';
-import { CommentBadges, isCommentWithModifiers } from './CommentBadges';
 import { Flags } from './Flags';
 import { MemberDeclaration } from './MemberDeclaration';
 import { MemberGetterSetter } from './MemberGetterSetter';
@@ -45,9 +44,9 @@ export function Member({ id }: MemberProps) {
 			<h3 className="tsd-panel-header">
 				<AnchorLink id={reflection.name} />
 				<SourceLink sources={reflection.sources} />
-				<Flags flags={reflection.flags} />
+				<Flags flags={reflection.flags} tags={comment?.modifierTags} />
 				{reflection.name}
-				{isCommentWithModifiers(comment) && <CommentBadges comment={comment} />}
+				{/*{isCommentWithModifiers(comment) && <CommentBadges comment={comment} />}*/}
 			</h3>
 
 			{content}

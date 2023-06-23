@@ -1,7 +1,7 @@
 import React from 'react';
 import { JSONOutput } from 'typedoc';
 
-function getModifierClassName(tag: string) {
+export function getModifierClassName(tag: string) {
 	switch (tag) {
 		case '@beta':
 		case '@experimental':

@@ -6,6 +6,7 @@ export default function DocNavbarItem({
   docId,
   label: staticLabel,
   docsPluginId,
+  disableActive,
   ...props
 }) {
   const {activeDoc} = useActiveDocContext(docsPluginId);
@@ -19,7 +20,7 @@ export default function DocNavbarItem({
       exact
       {...props}
       isActive={() =>
-        props.disableActive ? false : (activeDoc?.path === doc.path)
+        disableActive ? false : (activeDoc?.path === doc.path)
       }
       label={staticLabel ?? doc.id}
       to={doc.path}

@@ -48,7 +48,7 @@ export function MemberDeclaration({ id }: MemberDeclarationProps) {
 				)}
 
 				{showTypes && (
-					<div className="tds-type-parameters">
+					<div className="tsd-type-parameters">
 						<h4 className="tsd-type-parameters-title">Type parameters</h4>
 						<TypeParameters params={reflection.typeParameters} />
 					</div>

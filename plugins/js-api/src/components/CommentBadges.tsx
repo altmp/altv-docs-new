@@ -22,6 +22,10 @@ export function isCommentWithModifiers(
 	return !!comment && !!comment.modifierTags && comment.modifierTags.length > 0;
 }
 
+function removeTagPrefix(value: string) {
+	return value.replace(/^@/, '');
+}
+
 interface CommentBadgesProps {
 	comment: CommentWithModifiers;
 }
@@ -30,9 +34,9 @@ export function CommentBadges({ comment }: CommentBadgesProps) {
 	const { modifierTags } = comment;
 	return (
 		<div className="badge-group">
-			{modifierTags.map((tag) => (
-				<span key={tag} className={`badge badge--${getModifierClassName(tag)}`}>
-					{tag.slice(1)}
+			{modifierTags.map(removeTagPrefix).map((tag) => (
+				<span key={tag} className={`tsd-flag tsd-flag-${tag}`}>
+					{tag}
 				</span>
 			))}
 		</div>

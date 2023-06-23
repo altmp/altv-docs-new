@@ -206,6 +206,7 @@ html[data-theme='light'] .tsd-panel-content {
 	margin-right: 0.5rem;
 	opacity: 0.65;
 	vertical-align: middle;
+	line-height: var(--ifm-heading-line-height);
 }
 
 .tsd-flag-alpha {

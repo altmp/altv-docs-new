@@ -51,7 +51,8 @@ const DEFAULT_OPTIONS: Required<DocusaurusPluginTypeDocApiOptions> = {
 	tsconfigName: 'tsconfig.json',
 	typedocOptions: {},
 	versions: {},
-	rootEntryName: 'API Root'
+	rootEntryName: 'API Root',
+	rootDescriptionFile: ''
 };
 
 async function importFile<T>(file: string): Promise<T> {
@@ -82,6 +83,7 @@ export default function typedocApiPlugin(
 		projectRoot,
 		readmes,
 		removeScopes,
+		rootDescriptionFile,
 	} = options;
 	const isDefaultPluginId = pluginId === DEFAULT_PLUGIN_ID;
 	const versionsMetadata = readVersionsMetadata(context, options);
@@ -121,6 +123,8 @@ export default function typedocApiPlugin(
 			// Load later on
 			packageName: pkgConfig.name ?? '',
 			packageVersion: pkgConfig.version ?? '',
+			changelogPath: pkgConfig.changelog ?? '',
+			readmePath: pkgConfig.readme ?? ''
 		};
 	});
 
@@ -331,16 +335,16 @@ export default function typedocApiPlugin(
 							subRoutes.push(
 								createRoute(
 									entry.reflection,
-									entry.index && readmes && pkg.readmePath ? { readme: pkg.readmePath } : undefined,
+									entry.index && (readmes || pkg.forceReadme) && pkg.readmePath ? { readme: pkg.readmePath.replaceAll('$VER$', loadedVersion.versionName) } : undefined,
 								),
 							);
 
-							if (entry.index && changelogs && pkg.changelogPath) {
+							if (entry.index && (changelogs || pkg.forceChangelog) && pkg.changelogPath) {
 								subRoutes.push({
 									path: normalizeUrl([entry.reflection.permalink, 'changelog']),
 									exact: true,
 									component: path.join(__dirname, './components/ApiChangelog.js'),
-									modules: { changelog: pkg.changelogPath },
+									modules: { changelog: pkg.changelogPath.replaceAll('$VER$', loadedVersion.versionName) },
 									sidebar: 'api',
 								});
 							}
@@ -362,6 +366,7 @@ export default function typedocApiPlugin(
 								options: optionsData,
 								packages: packagesData,
 								versionMetadata,
+								...(rootDescriptionFile ? { description: rootDescriptionFile?.replace('$VER$', loadedVersion.versionName) } : {})
 							},
 							sidebar: 'api',
 						});
@@ -384,7 +389,7 @@ export default function typedocApiPlugin(
 		},
 
 		configureWebpack(config, isServer, utils) {
-			if (!readmes && !changelogs) {
+			if (!readmes && !changelogs && !options.rootDescriptionFile && !options.packages.some(e => typeof e == 'object' && (e.readme || e.changelog))) {
 				return {};
 			}
 

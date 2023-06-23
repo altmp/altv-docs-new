@@ -254,16 +254,21 @@ const config = {
             {
                 id: 'js',
                 minimal: true,
-                projectRoot: path.join(__dirname, 'typings/js-module'),
+                projectRoot: path.join(__dirname, 'js_versioned_docs/version-dev/repo'),
                 routeBasePath: 'api/js',
                 versions,
+                rootDescriptionFile: path.join(__dirname, 'versioned_docs/version-$VER$/intro.md'),
+                changelogs: true,
+                readmes: true,
                 onlyIncludeVersions: ['rc', 'dev', 'release'],
                 packages: [
                     {
                         slug: 'shared',
                         path: 'shared',
                         entry: 'index.d.ts',
-                        name: 'Shared module (alt-shared)'
+                        name: 'Shared module (alt-shared)',
+                        changelog: path.join(__dirname, 'versioned_docs/version-$VER$/intro.md'),
+                        readme: path.join(__dirname, 'versioned_docs/version-$VER$/intro.md')
                     },
                     {
                         slug: 'client',
@@ -285,7 +290,7 @@ const config = {
             {
                 id: 'jsv2',
                 minimal: true,
-                projectRoot: path.join(__dirname, 'typings/js-module'),
+                projectRoot: path.join(__dirname, 'jsv2_versioned_docs/version-dev/repo'),
                 routeBasePath: 'api/jsv2',
                 rootEntryName: 'JS Module v2',
                 versions,

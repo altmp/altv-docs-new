@@ -28,6 +28,7 @@ export interface DocusaurusPluginTypeDocApiOptions
 	sortSidebar?: (a: string, d: string) => number;
 	tsconfigName?: string;
 	rootEntryName?: string;
+	rootDescriptionFile?: string;
 	typedocOptions?: Partial<
 		Pick<
 			TypeDocOptions,
@@ -68,6 +69,8 @@ export interface PackageConfig {
 	slug?: string;
 	name?: string;
 	version?: string;
+	changelog?: string;
+	readme?: string;
 }
 
 export interface ResolvedPackageConfig {
@@ -76,6 +79,8 @@ export interface ResolvedPackageConfig {
 	packageSlug: string;
 	packageName: string;
 	packageVersion: string;
+	changelogPath?: string;
+	readmePath?: string;
 }
 
 // VERSIONING
@@ -135,6 +140,8 @@ export interface PackageReflectionGroup {
 	packageVersion: string;
 	changelogPath?: string;
 	readmePath?: string;
+	forceChangelog: boolean;
+	forceReadme: boolean;
 }
 
 export interface ApiMetadata {

@@ -18,6 +18,7 @@ export interface ApiIndexProps extends Pick<DocItemProps, 'route'> {
 	};
 	options: ApiOptions;
 	packages: PackageReflectionGroup[];
+	description: React.ComponentType;
 }
 
 function addVersionToUrl(
@@ -31,10 +32,11 @@ function addVersionToUrl(
 	return url.replace(/^\/api\/([^\/]+)/, '/api/$1' + versionPart);
 }
 
-export default function ApiIndex({ options, packages, history }: ApiIndexProps) {
+export default function ApiIndex({ options, packages, history, description: Description }: ApiIndexProps) {
 	const latestVersion = useDocsVersion();
 	const versions = useVersions('default');
 	const { preferredVersion } = useDocsPreferredVersion('default');
+	Description ??= React.Fragment;
 
 	useEffect(() => {
 		if (preferredVersion) {
@@ -63,6 +65,8 @@ export default function ApiIndex({ options, packages, history }: ApiIndexProps) 
 								<Heading as="h1">API</Heading>
 							</header>
 
+							<Description />
+
 							<section className="tsd-panel">
 								<h3 className="tsd-panel-header">Packages</h3>
 								<div className="tsd-panel-content">
@@ -73,7 +77,7 @@ export default function ApiIndex({ options, packages, history }: ApiIndexProps) 
 													className="tsd-kind-icon"
 													to={pkg.entryPoints[0].reflection.permalink}
 												>
-													<span className="tsd-signature-symbol">v{pkg.packageVersion}</span>{' '}
+													{/*<span className="tsd-signature-symbol">v{pkg.packageVersion}</span>{' '}*/}
 													<span>{removeScopes(pkg.packageName, options.scopes)}</span>
 												</Link>
 											</li>

@@ -122,6 +122,8 @@ export function loadPackageJsonAndDocs(
 	pkgFileName: string = 'package.json',
 	readmeFileName: string = 'README.md',
 	changelogFileName: string = 'CHANGELOG.md',
+	changelogPath?: string,
+	readmePath?: string
 ) {
 	let currentDir = initialDir;
 
@@ -129,16 +131,21 @@ export function loadPackageJsonAndDocs(
 		currentDir = path.dirname(currentDir);
 	}
 
-	const readmePath = path.join(currentDir, readmeFileName);
-	const changelogPath = path.join(currentDir, changelogFileName);
+	const forceChangelog = !!changelogPath
+	const forceReadme = !!readmePath
+
+	readmePath ??= path.join(currentDir, readmeFileName);
+	changelogPath ??= path.join(currentDir, changelogFileName);
 
 	return {
 		packageJson: JSON.parse(fs.readFileSync(path.join(currentDir, pkgFileName), 'utf8')) as {
 			name: string;
 			version: string;
 		},
-		readmePath: fs.existsSync(readmePath) ? readmePath : '',
-		changelogPath: fs.existsSync(changelogPath) ? changelogPath : '',
+		readmePath: forceReadme || fs.existsSync(readmePath) ? readmePath : '',
+		changelogPath: forceChangelog || fs.existsSync(changelogPath) ? changelogPath : '',
+		forceChangelog,
+		forceReadme
 	};
 }
 
@@ -322,11 +329,13 @@ export function flattenAndGroupPackages(
 
 				// We have a matching entry point, so store the record
 				if (!packages[cfg.packagePath]) {
-					const { packageJson, readmePath, changelogPath } = loadPackageJsonAndDocs(
+					const { packageJson, readmePath, changelogPath, forceChangelog, forceReadme } = loadPackageJsonAndDocs(
 						path.join(options.projectRoot, cfg.packagePath),
 						options.packageJsonName,
 						options.readmeName,
 						options.changelogName,
+						cfg.changelogPath,
+						cfg.readmePath,
 					);
 
 					packages[cfg.packagePath] = {
@@ -335,6 +344,8 @@ export function flattenAndGroupPackages(
 						packageVersion: cfg.packageVersion || packageJson.version,
 						readmePath,
 						changelogPath,
+						forceChangelog,
+						forceReadme
 					};
 
 					// eslint-disable-next-line no-param-reassign

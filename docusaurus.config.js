@@ -95,6 +95,10 @@ const config = {
     themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
         ({
+            announcementBar: {
+                id: 'warning',
+                content: 'This website is still under development and is missing a lot of information. <a href="https://docs.altv.mp">Click here to access the latest docs.</a>'
+            },
             metadata: [
                 {
                     name: 'darkreader-lock',

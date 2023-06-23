@@ -238,7 +238,7 @@ export default function typedocApiPlugin(
 								removeScopes,
 								changelogs,
 								options.sortSidebar,
-								'/' + options.routeBasePath,
+								'/' + options.routeBasePath + (metadata.isLast ? '' : ('/' + metadata.versionName)),
 								options.rootEntryName
 							),
 						};

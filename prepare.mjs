@@ -36,7 +36,8 @@ async function isDirEmpty(path) {
 }
 
 async function main() {
-    const shit = await sh("git submodule init");
+    await sh("yarn pack-plugins");
+    await sh("git submodule init");
 
     const files = {
         "./versioned_docs/version-dev": "dev",

@@ -6,7 +6,7 @@
     "prepare": "husky install && node prepare.mjs",
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
-    "build": "npm run pack-plugins && docusaurus build",
+    "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",

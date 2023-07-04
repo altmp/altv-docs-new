@@ -9,19 +9,16 @@ const path = require('path');
 const versions = {
     release: {
         label: 'Release',
-        docpath: '/release',
         banner: 'none',
         badge: false,
     },
     rc: {
         label: 'Release Candidate',
-        docpath: '/rc',
         banner: 'none',
         badge: true,
     },
     dev: {
         label: 'Development',
-        docpath: '/dev',
         banner: 'none',
         badge: true
     }
@@ -65,12 +62,8 @@ const config = {
                 docs: {
                     lastVersion: 'release',
                     includeCurrentVersion: false,
-                    versions: Object.fromEntries(Object.entries(versions).map(([k, v]) => {
-                        const obj = {...v, path: v.docpath};
-                        delete obj['docpath'];
-                        return [k, obj];
-                    })),
-                    routeBasePath: '/',
+                    versions,
+                    routeBasePath: 'docs',
                     // exclude: ['**/_*/**'],
                     sidebarPath: require.resolve('./sidebars.js'),
                     // Please change this to your repo.

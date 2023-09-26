@@ -499,3 +499,24 @@ table {
   position: relative;
   top: -20px;
 }
+
+.youtube-video {
+  margin: 0 0 var(--ifm-leading);
+}
+
+.accordionItem h3 {
+  margin-bottom: 0.3em;
+}
+
+.accordionItem {
+  margin-bottom: 1em;
+}
+
+.accordionItem .heading {
+  cursor: pointer;
+}
+
+.accordionItem .heading > svg.iconify {
+  vertical-align: -0.15em;
+  margin-left: 4px;
+}

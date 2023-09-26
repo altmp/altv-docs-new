@@ -40,26 +40,26 @@ function JOAATCalculator() {
   };
 
   return (
-    <div class="joaat">
-      <div class="calculator">
+    <div className="joaat">
+      <div className="calculator">
         <input id="input" type="text" value={input} onChange={handleInputChange} placeholder='Name' />
-        <div class="results">
-          <div class="item">
+        <div className="results">
+          <div className="item">
             <span>uint32</span>
             {input ? uint32Result : "-"}
           </div>
-          <div class="item">
+          <div className="item">
             <span>int32</span>
             {input ? int32Result : "-"}
           </div>
-          <div class="item">
+          <div className="item">
             <span>hex</span>
             {input ? "0x" + hexResult : "-"}
           </div>
         </div>
       </div>
       {showKarby && (
-        <div class="karby">
+        <div className="karby">
           <p>Karby. Karby. Karby. Karby. Karby. Karby. Karby. Karby. Karby.</p>
           <img src={require('@site/static/img/karby.png').default}></img>
           <p>Join our <a href="https://discord.altv.mp" target='blank'>Discord Server</a> for daily Karbys!</p>

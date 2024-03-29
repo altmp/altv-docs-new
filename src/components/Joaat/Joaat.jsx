@@ -9,22 +9,24 @@ function JOAATCalculator() {
   const [showKarby, setShowKarby] = useState(false);
 
   const calculateJOAAT = (str) => {
-    let hash = 0;
+    str = str.toLowerCase();
+    let h, i;
 
-    for (let i = 0; i < str.length; i++) {
-      const char = str.charCodeAt(i);
-      hash += char;
-      hash += (hash << 10);
-      hash ^= (hash >>> 6);
+    for (h = i = 0; i < str.length; i++) {
+      h += str.charCodeAt(i);
+      h += (h << 10);
+      h ^= (h >>> 6);
     }
 
-    hash += (hash << 3);
-    hash ^= (hash >>> 11);
-    hash += (hash << 15);
+    h += (h << 3);
+    h ^= (h >>> 11);
+    h += (h << 15);
 
-    setUint32Result(hash >>> 0);
-    setInt32Result(hash | 0);
-    setHexResult((hash >>> 0).toString(16).toUpperCase());
+    console.log(h);
+
+    setUint32Result(h >>> 0);
+    setInt32Result(h | 0);
+    setHexResult((h >>> 0).toString(16).toUpperCase())
 
     if (str.toLowerCase() === 'karby') {
       setShowKarby(true);

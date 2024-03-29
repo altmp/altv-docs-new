@@ -22,8 +22,6 @@ function JOAATCalculator() {
     h ^= (h >>> 11);
     h += (h << 15);
 
-    console.log(h);
-
     setUint32Result(h >>> 0);
     setInt32Result(h | 0);
     setHexResult((h >>> 0).toString(16).toUpperCase())

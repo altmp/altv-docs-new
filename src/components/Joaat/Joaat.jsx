@@ -9,11 +9,11 @@ function JOAATCalculator() {
   const [showKarby, setShowKarby] = useState(false);
 
   const calculateJOAAT = (str) => {
+    str = str.toLowerCase();
     let hash = 0;
 
     for (let i = 0; i < str.length; i++) {
-      const char = str.charCodeAt(i);
-      hash += char;
+      hash += str.charCodeAt(i);
       hash += (hash << 10);
       hash ^= (hash >>> 6);
     }
